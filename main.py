@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 import requests
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-ENDPOINT_PRIVATE_LIST = "https://api.spotify.com/v1/me"
-CLIENT_ID = "3b03b78d398a4dbd98274a197f05e011"
-CLIENT_SECRET = "48f24bc6f79c4ad0b5dda8e0dc5eee45"
-SPOTIFY_USERNAME = "Shresta Mallina"
+ENDPOINT_PRIVATE_LIST = "your spotify playlist api endpoint"
+CLIENT_ID = "spotify client id"
+CLIENT_SECRET = "spotify cilent sceret token"
+SPOTIFY_USERNAME = "your spotify username"
 
 header = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0"}
 #time_travel =input("which year would like to time travel? Type in this format YYYY-MM-DD: ")
@@ -22,7 +22,7 @@ list_100 = [song_name.getText().strip() for song_name in songs_list[:100]]
 sp = spotipy.Spotify(
     auth_manager=SpotifyOAuth(
         scope="playlist-modify-private",
-        redirect_uri="https://example.com/callback",
+        redirect_uri="your redirect uri in spotify",
         client_id=CLIENT_ID,
         client_secret=CLIENT_SECRET,
         show_dialog=True,
@@ -31,7 +31,7 @@ sp = spotipy.Spotify(
     )
 )
 user_id = sp.current_user()["id"]
-#print(user_id)#314bmmtn72pgu535au2k7zm5dgje
+
 song_uris =[]
 for song in list_100:
     result = sp.search(q=f"track:{song} year:{"2017-05-06"}",type="track")
@@ -39,12 +39,12 @@ for song in list_100:
     try:
         uri = result["tracks"]["items"][0]["uri"]
         song_uris.append(uri)
-        pprint(song_uris)
+        #pprint(song_uris)
 
 
     except IndexError:
         pass
-        #pprint(f"{song} doesn't exist in Spotify. Skipped.")
+        pprint(f"{song} doesn't exist in Spotify. Skipped.")
 
 
 playlist = sp.user_playlist_create(user=user_id, name=f"2017-05-06 Billboard 100", public=False)
