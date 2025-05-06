@@ -9,7 +9,7 @@ CLIENT_ID = "spotify client id"
 CLIENT_SECRET = "spotify cilent sceret token"
 SPOTIFY_USERNAME = "your spotify username"
 
-header = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0"}
+header = {"your HTTP Header"}
 #time_travel =input("which year would like to time travel? Type in this format YYYY-MM-DD: ")
 response = requests.get(f"https://www.billboard.com/charts/hot-100/2017-05-06/",headers=header)
 billB_webpage = response.text
